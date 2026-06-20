@@ -98,7 +98,7 @@ uv run aep version      # imprime versão + configuração ativa
 - [x] **Etapa 3** — Baselines + Thompson + Nilos-UCB + LinUCB + neural bandit (PyTorch) + MLflow. Ver [`reports/bandit-comparison.md`](reports/bandit-comparison.md).
 - [x] **Etapa 4** — Avaliação offline (IPS/SNIPS) + golden set (22 casos) + sensibilidade + fairness. Ver [`reports/evaluation.md`](reports/evaluation.md).
 - [x] **Etapa 5** — Serviço FastAPI + CLI (`aep decide`, `aep serve`), assistente LLM+RAG (mock/Anthropic), log auditável e pipeline único (`aep demo`).
-- [ ] **Etapa 6** — Arquitetura-alvo Azure (Mermaid + FinOps + Key Vault/Managed Identity).
+- [x] **Etapa 6** — Arquitetura-alvo Azure (Mermaid + FinOps + Key Vault/Managed Identity). Ver [`docs/architecture-azure.md`](docs/architecture-azure.md).
 - [ ] **Etapa 7** — Ciclo MLOps (retreino, approval gate, rollback, drift).
 - [ ] **Etapa 8** — Governança (model/system card, LGPD) + relatório técnico.
 
