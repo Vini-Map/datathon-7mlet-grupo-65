@@ -15,6 +15,7 @@ from aep import __version__
 from aep.bandits.cli import app as bandits_app
 from aep.config import get_settings
 from aep.data.cli import app as data_app
+from aep.evaluation.cli import app as eval_app
 from aep.synthetic.cli import app as synth_app
 
 app = typer.Typer(
@@ -26,6 +27,7 @@ app = typer.Typer(
 app.add_typer(data_app, name="data")
 app.add_typer(synth_app, name="synth")
 app.add_typer(bandits_app, name="bandits")
+app.add_typer(eval_app, name="eval")
 console = Console()
 
 
@@ -54,12 +56,6 @@ def train(n_steps: int = 20_000, seed: int = 123) -> None:
 
     path = write_bandit_report(n_steps=n_steps, seed=seed, log_mlflow=True)
     console.print(f"[green]OK[/green] Bandit comparison report: {path}")
-
-
-@app.command()
-def eval() -> None:
-    """(Stage 4) Run reproducible offline evaluation against the golden set."""
-    _todo("Stage 4", "aep eval")
 
 
 @app.command()

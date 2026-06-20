@@ -96,7 +96,7 @@ uv run aep version      # imprime versão + configuração ativa
 - [x] **Etapa 1** — Base Kaggle + EDA + dicionário de dados + relatório de qualidade.
 - [x] **Etapa 2** — Enriquecimento sintético (catálogo/eventos/recompensas atrasadas).
 - [x] **Etapa 3** — Baselines + Thompson + Nilos-UCB + LinUCB + neural bandit (PyTorch) + MLflow. Ver [`reports/bandit-comparison.md`](reports/bandit-comparison.md).
-- [ ] **Etapa 4** — Avaliação offline + golden set (≥20) + fairness.
+- [x] **Etapa 4** — Avaliação offline (IPS/SNIPS) + golden set (22 casos) + sensibilidade + fairness. Ver [`reports/evaluation.md`](reports/evaluation.md).
 - [ ] **Etapa 5** — Serviço FastAPI/CLI + assistente LLM+RAG + testes.
 - [ ] **Etapa 6** — Arquitetura-alvo Azure (Mermaid + FinOps + Key Vault/Managed Identity).
 - [ ] **Etapa 7** — Ciclo MLOps (retreino, approval gate, rollback, drift).
