@@ -13,6 +13,7 @@ from rich.console import Console
 
 from aep import __version__
 from aep.config import get_settings
+from aep.data.cli import app as data_app
 
 app = typer.Typer(
     name="aep",
@@ -20,12 +21,13 @@ app = typer.Typer(
     no_args_is_help=True,
     add_completion=False,
 )
+app.add_typer(data_app, name="data")
 console = Console()
 
 
 def _todo(stage: str, command: str) -> None:
     console.print(
-        f"[yellow]›[/yellow] [bold]{command}[/bold] will be implemented in "
+        f"[yellow]>[/yellow] [bold]{command}[/bold] will be implemented in "
         f"[bold]{stage}[/bold]. The command surface is reserved so the workflow "
         f"is discoverable end-to-end.",
     )
@@ -39,12 +41,6 @@ def version() -> None:
     console.print(f"  llm_provider = {settings.llm_provider}")
     console.print(f"  random_seed  = {settings.random_seed}")
     console.print(f"  data_dir     = {settings.data_dir}")
-
-
-@app.command()
-def data() -> None:
-    """(Stage 1-2) Process the Kaggle base and generate synthetic enrichment."""
-    _todo("Stage 1-2", "aep data")
 
 
 @app.command()

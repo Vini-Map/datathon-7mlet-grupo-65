@@ -15,6 +15,7 @@ keywords = ["multi-armed-bandits", "thompson-sampling", "ucb", "contextual-bandi
 dependencies = [
     "numpy>=1.26",
     "pandas>=2.1",
+    "pyarrow>=15.0",
     "pydantic>=2.6",
     "pydantic-settings>=2.2",
     "python-dotenv>=1.0",
