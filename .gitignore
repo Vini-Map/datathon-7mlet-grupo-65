@@ -1,0 +1,62 @@
+# Byte-compiled / optimized / cache
+__pycache__/
+*.py[cod]
+*$py.class
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+
+# Secrets & local config — NEVER commit real values
+.env
+.env.local
+*.key
+*.pem
+secrets/
+
+# Data — raw Kaggle data and generated artifacts are NOT versioned.
+# Track only schemas, dictionaries, small synthetic samples, and the golden set.
+data/kaggle/*.csv
+data/kaggle/*.zip
+data/processed/*.parquet
+data/processed/*.csv
+data/synthetic_enrichment/*.parquet
+data/synthetic_enrichment/*.csv
+!data/**/README.md
+!data/**/.gitkeep
+!data/golden_set/evaluation_cases.jsonl
+
+# MLflow local tracking & model artifacts (large binaries)
+mlruns/
+mlartifacts/
+*.pt
+*.pth
+*.onnx
+*.joblib
+*.pkl
+
+# RAG vector stores
+.chroma/
+*.faiss
+vector_store/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
