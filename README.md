@@ -93,9 +93,9 @@ uv run aep version      # imprime versão + configuração ativa
 ## 5. Estado do projeto (Etapas 0–8)
 
 - [x] **Etapa 0 — Organização** — repo, `pyproject.toml`, `.gitignore`, `.env.example`, `LICENSE`, README, Makefile/`make.ps1`, esqueleto do pacote e CLI, smoke tests.
-- [ ] **Etapa 1** — Base Kaggle + EDA + dicionário de dados + relatório de qualidade.
-- [ ] **Etapa 2** — Enriquecimento sintético (catálogo/eventos/recompensas atrasadas).
-- [ ] **Etapa 3** — Baselines + Thompson + Nilos-UCB + contextual (PyTorch) + MLflow.
+- [x] **Etapa 1** — Base Kaggle + EDA + dicionário de dados + relatório de qualidade.
+- [x] **Etapa 2** — Enriquecimento sintético (catálogo/eventos/recompensas atrasadas).
+- [x] **Etapa 3** — Baselines + Thompson + Nilos-UCB + LinUCB + neural bandit (PyTorch) + MLflow. Ver [`reports/bandit-comparison.md`](reports/bandit-comparison.md).
 - [ ] **Etapa 4** — Avaliação offline + golden set (≥20) + fairness.
 - [ ] **Etapa 5** — Serviço FastAPI/CLI + assistente LLM+RAG + testes.
 - [ ] **Etapa 6** — Arquitetura-alvo Azure (Mermaid + FinOps + Key Vault/Managed Identity).

@@ -12,6 +12,7 @@ import typer
 from rich.console import Console
 
 from aep import __version__
+from aep.bandits.cli import app as bandits_app
 from aep.config import get_settings
 from aep.data.cli import app as data_app
 from aep.synthetic.cli import app as synth_app
@@ -24,6 +25,7 @@ app = typer.Typer(
 )
 app.add_typer(data_app, name="data")
 app.add_typer(synth_app, name="synth")
+app.add_typer(bandits_app, name="bandits")
 console = Console()
 
 
@@ -46,9 +48,12 @@ def version() -> None:
 
 
 @app.command()
-def train() -> None:
-    """(Stage 3) Train/simulate bandit policies and log runs to MLflow."""
-    _todo("Stage 3", "aep train")
+def train(n_steps: int = 20_000, seed: int = 123) -> None:
+    """(Stage 3) Simulate all bandit policies, log to MLflow, write the report."""
+    from aep.bandits.report import write_bandit_report
+
+    path = write_bandit_report(n_steps=n_steps, seed=seed, log_mlflow=True)
+    console.print(f"[green]OK[/green] Bandit comparison report: {path}")
 
 
 @app.command()
