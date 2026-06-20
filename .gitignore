@@ -51,6 +51,9 @@ mlartifacts/
 *.faiss
 vector_store/
 
+# Auditable decision log (runtime artifact)
+data/audit/*.jsonl
+
 # OS / editor / local agent state
 .DS_Store
 Thumbs.db

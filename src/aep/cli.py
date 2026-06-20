@@ -12,6 +12,7 @@ import typer
 from rich.console import Console
 
 from aep import __version__
+from aep.assistant.cli import app as assistant_app
 from aep.bandits.cli import app as bandits_app
 from aep.config import get_settings
 from aep.data.cli import app as data_app
@@ -28,15 +29,8 @@ app.add_typer(data_app, name="data")
 app.add_typer(synth_app, name="synth")
 app.add_typer(bandits_app, name="bandits")
 app.add_typer(eval_app, name="eval")
+app.add_typer(assistant_app, name="assistant")
 console = Console()
-
-
-def _todo(stage: str, command: str) -> None:
-    console.print(
-        f"[yellow]>[/yellow] [bold]{command}[/bold] will be implemented in "
-        f"[bold]{stage}[/bold]. The command surface is reserved so the workflow "
-        f"is discoverable end-to-end.",
-    )
 
 
 @app.command()
@@ -59,15 +53,61 @@ def train(n_steps: int = 20_000, seed: int = 123) -> None:
 
 
 @app.command()
-def serve() -> None:
-    """(Stage 5) Start the FastAPI decision service."""
-    _todo("Stage 5", "aep serve")
+def serve(host: str | None = None, port: int | None = None) -> None:
+    """(Stage 5) Start the FastAPI decision + assistant service."""
+    import uvicorn
+
+    settings = get_settings()
+    uvicorn.run(
+        "aep.service.app:app",
+        host=host or settings.api_host,
+        port=port or settings.api_port,
+    )
 
 
 @app.command()
-def demo() -> None:
-    """(Stage 5) Run the end-to-end pipeline locally."""
-    _todo("Stage 5", "aep demo")
+def decide(
+    age: int = 45,
+    job: str = "management",
+    default: str = "no",
+    contact: str = "cellular",
+    explain: bool = False,
+) -> None:
+    """(Stage 5) Make one offer decision from the command line."""
+    import pandas as pd
+
+    from aep.bandits.serving import ServingPolicy
+    from aep.service import audit
+    from aep.service.schemas import ClientContext
+
+    ctx = ClientContext(age=age, job=job, default=default, contact=contact)
+    features = ctx.to_features()
+    decision = ServingPolicy().fit().decide_row(pd.DataFrame([features]))
+    record = audit.record_decision(features, decision)
+    console.print(
+        f"[bold green]offer[/bold green]   : {decision.offer_id} " f"(score {decision.score:.3f})"
+    )
+    console.print(f"policy  : {decision.policy_version}")
+    console.print(f"reasons : {decision.reason_codes}")
+    console.print(f"audit_id: {record['audit_id']}")
+    if explain:
+        from aep.assistant.assistant import Assistant
+
+        ans = Assistant().explain_decision(decision, features)
+        console.print(f"\n[bold]explanation[/bold] ({ans.provider}, cites {ans.citations}):")
+        console.print(ans.text)
+
+
+@app.command()
+def demo(n_steps: int = 20_000, mlflow: bool = True) -> None:
+    """(Stage 5) Run the end-to-end pipeline locally (data -> train -> eval -> decision)."""
+    from aep.pipeline import run_pipeline
+
+    out = run_pipeline(n_steps=n_steps, log_mlflow=mlflow)
+    console.print(
+        f"\n[green]OK[/green] Pipeline complete. Example decision: "
+        f"[bold]{out['decision']}[/bold] ({out['policy_version']})."
+    )
 
 
 if __name__ == "__main__":  # pragma: no cover
