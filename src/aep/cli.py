@@ -17,6 +17,7 @@ from aep.bandits.cli import app as bandits_app
 from aep.config import get_settings
 from aep.data.cli import app as data_app
 from aep.evaluation.cli import app as eval_app
+from aep.mlops.cli import app as mlops_app
 from aep.synthetic.cli import app as synth_app
 
 app = typer.Typer(
@@ -30,6 +31,7 @@ app.add_typer(synth_app, name="synth")
 app.add_typer(bandits_app, name="bandits")
 app.add_typer(eval_app, name="eval")
 app.add_typer(assistant_app, name="assistant")
+app.add_typer(mlops_app, name="mlops")
 console = Console()
 
 

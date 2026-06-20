@@ -54,6 +54,9 @@ vector_store/
 # Auditable decision log (runtime artifact)
 data/audit/*.jsonl
 
+# Local model registry state (runtime artifact)
+models/
+
 # OS / editor / local agent state
 .DS_Store
 Thumbs.db
