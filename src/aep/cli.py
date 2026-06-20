@@ -14,6 +14,7 @@ from rich.console import Console
 from aep import __version__
 from aep.config import get_settings
 from aep.data.cli import app as data_app
+from aep.synthetic.cli import app as synth_app
 
 app = typer.Typer(
     name="aep",
@@ -22,6 +23,7 @@ app = typer.Typer(
     add_completion=False,
 )
 app.add_typer(data_app, name="data")
+app.add_typer(synth_app, name="synth")
 console = Console()
 
 
