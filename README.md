@@ -100,7 +100,7 @@ uv run aep version      # imprime versão + configuração ativa
 - [x] **Etapa 5** — Serviço FastAPI + CLI (`aep decide`, `aep serve`), assistente LLM+RAG (mock/Anthropic), log auditável e pipeline único (`aep demo`).
 - [x] **Etapa 6** — Arquitetura-alvo Azure (Mermaid + FinOps + Key Vault/Managed Identity). Ver [`docs/architecture-azure.md`](docs/architecture-azure.md).
 - [x] **Etapa 7** — Ciclo MLOps: registro com estágios, approval gate, rollback, drift (PSI) + recompensa. Ver [`docs/mlops-plan.md`](docs/mlops-plan.md) e [`reports/mlops-monitoring.md`](reports/mlops-monitoring.md).
-- [ ] **Etapa 8** — Governança (model/system card, LGPD) + relatório técnico.
+- [x] **Etapa 8** — Governança: [model card](docs/model-card.md), [system card](docs/system-card.md), [plano LGPD](docs/lgpd-plan.md) e [relatório técnico](reports/technical-report.md).
 
 ## 6. Limitações
 
