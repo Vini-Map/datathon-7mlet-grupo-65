@@ -50,11 +50,12 @@ mlartifacts/
 *.faiss
 vector_store/
 
-# OS / editor
+# OS / editor / local agent state
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
+.claude/
 
 # Coverage
 .coverage
